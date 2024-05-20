@@ -6,8 +6,8 @@
 # Your platform. See PLATS for possible values.
 PLAT= guess
 
-CC= riscv64-unknown-elf-gcc -std=gnu99
-CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_3 $(SYSCFLAGS) $(MYCFLAGS)
+# CC= gcc -std=gnu99
+CFLAGS= -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_3 $(SYSCFLAGS) $(MYCFLAGS)
 LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
 LIBS= -lm $(SYSLIBS) $(MYLIBS)
 
@@ -20,7 +20,7 @@ SYSCFLAGS=
 SYSLDFLAGS=
 SYSLIBS=
 
-MYCFLAGS=-I $(LIBC_INCLUDE) -mcmodel=medany
+MYCFLAGS=-I $(LIBC_INCLUDE)
 MYLDFLAGS=
 MYLIBS=
 MYOBJS=
@@ -37,11 +37,11 @@ CORE_O=	lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem
 LIB_O=	lauxlib.o lbaselib.o lcorolib.o ldblib.o liolib.o lmathlib.o loadlib.o loslib.o lstrlib.o ltablib.o lutf8lib.o linit.o
 BASE_O= $(CORE_O) $(LIB_O) $(MYOBJS)
 
-LUA_T=	lua
-LUA_O=	lua.o
-
-LUAC_T=	luac
-LUAC_O=	luac.o
+# LUA_T=	lua
+# LUA_O=	lua.o
+#
+# LUAC_T=	luac
+# LUAC_O=	luac.o
 
 ALL_O= $(BASE_O) $(LUA_O) $(LUAC_O)
 ALL_T= $(LUA_A) $(LUA_T) $(LUAC_T)
